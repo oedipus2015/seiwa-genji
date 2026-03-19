@@ -106,14 +106,14 @@ function parseCSV(csv) {
         };
 
         // 親子関係
-        if (father && mother) {
-            node.fid = father;
-            node.mid = mother;
-        } else if (father) {
-            node.pid = father;
-        } else if (mother) {
-            node.mid = mother;
-        }
+		if (father && mother) {
+		    node.fid = father;
+		    node.mid = mother;
+		} else if (father) {
+		    node.pid = father;
+		} else {
+		    // 親なしでも表示
+		}
 
         // 配偶者
         if (spouse) {
