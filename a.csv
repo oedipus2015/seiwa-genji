@@ -1,0 +1,5 @@
+id,name,desc,gender,father,mother,spouse,img
+1,清和天皇,ららら,male,,,2,img/Emperor_Seiwa.jpg
+2,棟貞王の娘,,female,,,1,
+3,子1,,male,1,2,,
+4,子2,,male,1,2,,
