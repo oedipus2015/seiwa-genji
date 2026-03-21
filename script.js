@@ -71,6 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("CLICK EVENT:", args);   // ← ★ ここ！
                 console.log("NODE:", args.node);
                 console.log("NODE.DATA:", args.node?.data);
+                console.log("NODE._DATA:", args.node?._data);
+                console.log("NODE.RECORD:", args.node?.record);
+                console.log("NODE.TAGS:", args.node?.tags);
+                console.log("NODE.PROPS:", args.node?.props);
 
 
             
