@@ -72,4 +72,13 @@ body {
     margin-left: 0 !important;
 }
 
+/* ★ SVG 全体の中央寄せを無効化 */
+#tree svg {
+    transform: none !important;
+    margin-left: 0 !important;
+}
 
+/* ★ SVG 内部の g（グループ）にも transform が入っているので無効化 */
+#tree svg g {
+    transform: none !important;
+}
