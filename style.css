@@ -21,12 +21,13 @@ body {
 }
 
 .popup-img {
-    width: 200px !important;
-    max-width: 200px !important;
+    width: 150px !important;
     height: auto !important;
+    max-width: 150px !important;
     display: block;
     margin: 0 auto 10px;
     border-radius: 6px;
+    object-fit: cover;
 }
 
 
