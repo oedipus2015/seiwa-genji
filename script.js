@@ -32,8 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
+                    field_2: "desc",
                     img_0: "img"
-                },
+                }
                 nodes: nodes
             });
 
