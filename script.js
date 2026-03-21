@@ -35,6 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     field_2: "desc",
                     img_0: "img"
                 },
+                popup: {
+                    template: function(node) {
+                        return `
+                            <div class="popup">
+                                <img src="${node.img}" style="width:80px;height:80px;object-fit:cover;">
+                                <h2>${node.name}</h2>
+                                <h3>${node.title}</h3>
+                                <p>${node.desc}</p>
+                            </div>
+                        `;
+                    }
+                },
                 nodes: nodes
             });
 
