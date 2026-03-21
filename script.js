@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     field_1: "title",
                     field_2: "desc",
                     img_0: "img"
-                }
+                },
                 nodes: nodes
             });
 
