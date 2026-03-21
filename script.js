@@ -73,11 +73,11 @@ function parseCSV(csv) {
 
         const cols = line.split(",").map(v => v.trim());
         
-        while (cols.length < 7) {
+        while (cols.length < 6) {
         	cols.push("");
     	}
 
-        if (cols.length < 7) {
+        if (cols.length < 6) {
             log("列不足: " + line, "warn");
             return;
         }
@@ -86,7 +86,7 @@ function parseCSV(csv) {
         const name = cols[1];
         const desc = cols[2];
         const father = toNum(cols[4]);
-        const img = cols[6];
+        const img = cols[5];
 
         log("pid type: " + typeof father + " value:" + father);
 
@@ -94,12 +94,12 @@ function parseCSV(csv) {
             id: id,
             name: name,
             desc: desc,
-            img: img || ""
+            img: img || "img/dummy.jpg"
         };
 
 		// 父だけで構築
-		if (father !== null) {
-		    node.pid = Number(father);
+		if (father) {
+		    node.pid = father;
 		}
 
 		log("node: " + JSON.stringify(node));
@@ -149,7 +149,6 @@ function parseCSV(csv) {
     const tree = new FamilyTree(document.getElementById("tree"), {
         template: "myTemplate",
         nodes: nodes,
-        roots: [1],
         nodeBinding: {
             field_0: "desc",
             field_1: "name",
