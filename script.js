@@ -46,33 +46,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const fid = cleanFather !== "" ? Number(cleanFather) : null;
 
-        console.log("ID:", id, "FID:", fid);
-
         return {
           id: id,
-          pid: fid,  // 親ID（最重要）
+          pid: fid,
 
           name: row.name || "",
           desc: row.desc || "",
-          img: row.img || ""   // ← 画像を追加
+          img: row.img || ""   // ← olivia はこれでOK
         };
       });
 
       nodes.sort((a, b) => a.id - b.id);
 
       new FamilyTree(document.getElementById("tree"), {
-        template: "olivia",   // ← これを最初に書く！
-      
-        orientation: FamilyTree.orientation.top,  // ← これがテンプレートを上書きする
-      
-        layout: FamilyTree.layout.normal,
-      
+        template: "olivia",   // ← olivia に変更
+        orientation: FamilyTree.orientation.top,
+
         nodeBinding: {
           field_0: "name",
           field_1: "desc",
-          img_0: "img"
+          img: "img"   // ← olivia は img という名前の画像フィールド
         },
-      
+
         nodes: nodes
       });
 
