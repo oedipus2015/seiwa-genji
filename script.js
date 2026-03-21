@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // OrgChart の描画
             new OrgChart(document.getElementById("tree"), {
                 template: "olivia",     // ← OrgChart は olivia が最初から使える
-                layout: OrgChart.mixed, // ← 縦並び（top-down）
                 enableSearch: false,
 
                 nodeBinding: {
