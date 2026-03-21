@@ -52,7 +52,6 @@ function parseCSV(csv) {
 
 	new FamilyTree(document.getElementById("tree"), {
 	    nodes: nodes,
-	    roots: [1],
 
 	    nodeBinding: {
 	        field_0: "name",
