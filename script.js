@@ -63,7 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 template: "olivia",
                 enableSearch: false,
             
-                nodeMenu: false,   // ★ 下に出るデフォルトの詳細パネルを完全に無効化
+                expand: false,     // ★ ノードをクリックしても展開しない
+                collapse: { level: 0 }, // ★ 最初から全ノードを閉じたままにする
             
                 nodeBinding: {
                     field_0: "name",
