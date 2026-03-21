@@ -61,16 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
       nodes.sort((a, b) => a.id - b.id);
 
       new FamilyTree(document.getElementById("tree"), {
-        template: "john",   // ← 画像対応テンプレート
+        template: "john",
+      
+        // ★ これを template の直後に置くと縦並びになる
         orientation: FamilyTree.orientation.top,
+      
         layout: FamilyTree.layout.normal,
-
+      
         nodeBinding: {
           field_0: "name",
           field_1: "desc",
-          img_0: "img"   // ← 画像を表示
+          img_0: "img"
         },
-
+      
         nodes: nodes
       });
 
