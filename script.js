@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const lines = text.trim().split(/\r?\n/);
             const headers = lines[0].split(",");
 
+            // ★ ここで myData を作る
+            const myData = {};
+
             let nodes = lines.slice(1).map(line => {
 
                 const cols = parseCSVLine(line);
@@ -42,6 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 // id と pid（親ID）
                 const id = Number(row.id);
                 const pid = row.pid ? Number(row.pid) : null;
+
+                // ★ row を保存（クリック時に使う）
+                myData[id] = row;
 
                 return {
                     id: id,
@@ -66,17 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodes: nodes
             });
 
-            // クリックイベント
+            // ★ クリックイベント（myData を使う）
             chart.on('click', function (sender, args) {
 
-                console.log("CLICK EVENT:", args);
-                console.log("NODE:", args.node);
-                console.log("NODE.DATA:", args.node?.data);
-                console.log("NODE.RECORD:", args.node?.record);
+                const id = args?.node?.id;
+                if (!id) return;
 
-                if (!args || !args.node || !args.node.data) return;
-
-                const n = args.node.data;
+                const n = myData[id];   // ← ここでデータ取得
+                if (!n) return;
 
                 const html = `
                     <div class="popup">
