@@ -72,6 +72,10 @@ function parseCSV(csv) {
         if (!line.trim()) return;
 
         const cols = line.split(",").map(v => v.trim());
+        
+        while (cols.length < 7) {
+        	cols.push("");
+    	}
 
         if (cols.length < 7) {
             log("列不足: " + line, "warn");
