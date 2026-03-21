@@ -28,7 +28,8 @@ function clearLog() {
 // ==========================
 function toNum(v) {
     if (!v) return null;
-    const n = parseInt(v.replace(/[^\d]/g, ""));
+    const cleaned = v.replace(/[^\d]/g, "");
+    const n = parseInt(cleaned);
     return isNaN(n) ? null : n;
 }
 
@@ -98,14 +99,13 @@ function parseCSV(csv) {
             img: img || ""
         };
 
-        // 🔥 父だけで構築
-        if (father) {
-            node.pid = father;
-        }
+		// 父だけで構築
+		if (father) {
+		    node.pid = father;
+		}
 
-        if (spouse) {
-            spouseMap[id] = spouse;
-        }
+		// 🔥 ここに追加！！
+		log("node: " + JSON.stringify(node));
 
         nodes.push(node);
     });
