@@ -2,42 +2,53 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>テスト</title>
+<title>家系図 完全版</title>
 
-<!-- 🔥 これが最重要 -->
 <script src="https://balkan.app/js/FamilyTree.js"></script>
 
+<style>
+body {
+    font-family: Meiryo, sans-serif;
+    background: #111;
+    color: #fff;
+    padding: 20px;
+}
+
+#tree {
+    width: 100%;
+    height: 600px;
+    background: #fff;
+    border: 2px solid #333;
+}
+
+#log {
+    display: none;
+    background: #000;
+    color: #0f0;
+    font-family: monospace;
+    padding: 10px;
+    margin-top: 10px;
+    height: 180px;
+    overflow-y: auto;
+}
+
+button {
+    margin-top: 10px;
+}
+</style>
 </head>
 
 <body>
 
-<h2>テスト家系図</h2>
+<h2>家系図（最終完成版）</h2>
 
-<!-- 🔥 高さ必須 -->
-<div id="tree" style="width:100%; height:600px; border:1px solid #000;"></div>
+<button onclick="toggleLog()">ログ表示切替</button>
+<button onclick="clearLog()">ログクリア</button>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+<div id="tree"></div>
+<div id="log"></div>
 
-    const nodes = [
-        { id: 1, name: "父" },
-        { id: 100, name: "母（ダミー）" },
-    
-        { id: 2, name: "子", fid: 1, mid: 100 }
-    ];
-
-    new FamilyTree(document.getElementById("tree"), {
-        nodes: nodes,
-        nodeBinding: {
-            field_0: "name"
-        },
-
-        // 🔥 これだけ追加
-        layout: FamilyTree.layout.tree
-    });
-
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
