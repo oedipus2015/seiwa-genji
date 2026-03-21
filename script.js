@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-             // ★ OrgChart 初期化（最小構成）
+            /* ★ OrgChart 初期化（align は使わない） */
             const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
                 nodeBinding: {
@@ -42,43 +42,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 nodes: nodes
             });
-            
-            // ★ 家系図を左寄せに強制（最終決定版）
-            chart.on('redraw', function () {
-                const svg = document.querySelector('#tree svg');
-                if (!svg) return;
-            
-                svg.style.transform = 'none';
-                svg.style.width = '100%';
-            
-                const groups = svg.querySelectorAll('g');
-                groups.forEach(g => g.removeAttribute('transform'));
-            });
-            
-            // ★ 内部イベントを全部消す ← これが原因なので削除
-            // chart.events = {};
-            
-            // ★ クリックイベントだけ追加
+
+            /* ★ ノードクリックで右パネルに表示 */
             chart.on('click', function (sender, args) {
                 args.cancel = true;
-            
+
                 const id = args?.node?.id;
                 if (!id) return;
-            
+
                 const n = myData[id];
                 if (!n) return;
-            
+
                 document.getElementById("panel-img").src = n.img;
                 document.getElementById("panel-name").textContent = n.name;
                 document.getElementById("panel-title").textContent = n.title;
-            
+
                 document.getElementById("side-panel").classList.remove("hidden");
             });
 
         });
 });
 
-// ★ パネルを閉じる関数（絶対に動く最小形）
+/* ★ パネルを閉じる関数 */
 window.hidePanel = function () {
     document.getElementById("side-panel").classList.add("hidden");
 };
