@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // ★ここだけにする（重複禁止）
         const id = parseInt(row.id);
         const pid = row.father ? parseInt(row.father) : null;
+        
+        console.log("RAW father:", row.father);
+        console.log("PID:", pid);
 
         return {
           id: id,
