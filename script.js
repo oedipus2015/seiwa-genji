@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nodes.sort((a, b) => a.id - b.id);
 
       new FamilyTree(document.getElementById("tree"), {
-        template: "olivia",   // ← ここが最重要
         orientation: FamilyTree.orientation.top,
 
         nodeBinding: {
