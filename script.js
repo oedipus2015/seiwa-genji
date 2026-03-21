@@ -154,10 +154,15 @@ function parseCSV(csv) {
             field_1: "name",
             img_0: "img"
         },
-        layout: FamilyTree.layout.tree,
-        orientation: FamilyTree.orientation.top,
-        scaleInitial: FamilyTree.match.boundary
-    });
+	    layout: FamilyTree.layout.tree,
+	    orientation: FamilyTree.orientation.top,
+
+	    levelSeparation: 120,
+	    siblingSeparation: 80,
+	    subtreeSeparation: 100,
+
+	    scaleInitial: FamilyTree.match.boundary
+	});
 
     tree.on('click', function(sender, args){
         alert(args.node.name + "\n" + args.node.desc);
