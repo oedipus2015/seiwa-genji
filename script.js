@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.text())
     .then(text => {
 
-      // Windows対策込み
       const lines = text.trim().split(/\r?\n/);
 
       const headers = lines[0].split(",");
@@ -17,9 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
           row[h.trim()] = cols[i] ? cols[i].trim() : "";
         });
 
-        // ★ ここが超重要
-        const id = Number(row.id);
-        const pid = row.father !== "" ? Number(row.father) : null;
+        // ★ここを強化（原因対策）
+        const id = Number(row.id.trim());
+        const father = row.father.trim();
+
+        const pid = father !== "" ? Number(father) : null;
+
+        console.log("CHECK:", id, "→ parent:", pid); // ←確認用
 
         return {
           id: id,
@@ -32,12 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
         };
       });
 
-      // デバッグ（確認用）
-      console.log(nodes);
+      console.log("FINAL NODES:", nodes);
 
-      // ★ ツリー生成
       new FamilyTree(document.getElementById("tree"), {
-        orientation: FamilyTree.orientation.top, // ←縦
+        orientation: FamilyTree.orientation.top,
         layout: FamilyTree.layout.normal,
 
         nodeBinding: {
