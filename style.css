@@ -7,15 +7,3 @@ body {
   width: 100%;
   height: 100vh;
 }
-
-/* ノードの名前 */
-.node text {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* 説明文 */
-.node [data-field="field_1"] {
-  font-size: 12px;
-  fill: #555;
-}
