@@ -87,8 +87,7 @@ function parseCSV(csv) {
         const name = cols[1];
         const desc = cols[2];
         const father = toNum(cols[4]);
-        const spouse = toNum(cols[5]);
-        const img = cols[6];
+        const img = cols[5];
 
         if (!id) return;
 
@@ -108,12 +107,6 @@ function parseCSV(csv) {
 		log("node: " + JSON.stringify(node));
 
         nodes.push(node);
-    });
-
-    // 配偶者リンク
-    nodes.forEach(node => {
-        const sp = spouseMap[node.id];
-        if (sp) node.pids = [sp];
     });
 
     log("ノード数: " + nodes.length);
