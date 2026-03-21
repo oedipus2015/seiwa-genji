@@ -73,40 +73,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 nodes: nodes
             });
-            
-            // ★ ここに追加する（chart のすぐ後）
-            chart.on('click', function(sender, args){
-                args.cancel = true; // ← 展開処理を完全に止める
-            });
 
-            // ★ クリックイベント（myData を使う）
+            // ★ click を「1つだけ」にまとめる
             chart.on('click', function (sender, args) {
-            
+                // まず展開処理を完全に止める
+                args.cancel = true;
+
                 const id = args?.node?.id;
                 if (!id) return;
-            
+
                 const n = myData[id];
                 if (!n) return;
-            
+
                 // パネルにデータを入れる
                 document.getElementById("panel-img").src = n.img;
                 document.getElementById("panel-name").textContent = n.name;
                 document.getElementById("panel-title").textContent = n.title;
-            
+
                 // パネルを表示
                 document.getElementById("side-panel").classList.remove("hidden");
             });
-            
-            // 閉じる関数
-            function hidePanel() {
-                document.getElementById("side-panel").classList.add("hidden");
-            }
-
-
 
         });
 
 });
+
+// グローバルから呼ぶ用
 window.hidePanel = function () {
     document.getElementById("side-panel").classList.add("hidden");
 };
