@@ -1,10 +1,44 @@
-/* 家系図エリアだけ残す */
+/* ============================
+   家系図エリア
+   ============================ */
 #tree {
     width: 100% !important;
     height: 100vh !important;
+    overflow: hidden;
 }
 
-/* 右パネルは使わないので非表示にする */
+/* ============================
+   Olivia テンプレのタイトル改行対応
+   ============================ */
+
+/* タイトルを改行可能にする */
+.oc-node .oc-title {
+    white-space: normal !important;     /* ← 改行OK */
+    word-break: break-word !important;  /* ← 日本語でも折れる */
+    line-height: 1.3em;
+    overflow: visible !important;
+    height: auto !important;
+}
+
+/* カードの高さ固定を解除（これが本命） */
+.oc-node .oc-card,
+.oc-node .oc-card-inner {
+    height: auto !important;
+}
+
+/* ============================
+   ノード画像の調整（必要なら）
+   ============================ */
+.oc-node .oc-image {
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* ============================
+   右パネルは使わないので完全非表示
+   ============================ */
 #side-panel {
     display: none !important;
 }
