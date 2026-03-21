@@ -89,7 +89,3 @@ body {
     object-fit: cover;
 }
 
-/* ★ olivia の下に出る子ノード領域を完全に非表示にする */
-.oc-node {
-    display: none !important;
-}
