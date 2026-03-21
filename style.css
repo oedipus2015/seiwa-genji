@@ -61,12 +61,12 @@ body {
 }
 
 .panel-img {
-    width: 200px;
-    height: auto;
-    display: block;
-    margin: 0 auto 10px;
-    border-radius: 6px;
+    width: 120px;      /* 好きなサイズに調整できる */
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
 }
+
 
 .close-btn {
     position: absolute;
