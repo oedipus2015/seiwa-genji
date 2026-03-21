@@ -50,12 +50,16 @@ function parseCSV(csv) {
 
     console.log(nodes);
 
-    new FamilyTree(document.getElementById("tree"), {
-        nodes: nodes,
-        nodeBinding: {
-            field_0: "name",
-            field_1: "title",
-            img_0: "img"
-        }
-    });
-}
+	new FamilyTree(document.getElementById("tree"), {
+	    nodes: nodes,
+
+	    nodeBinding: {
+	        field_0: "name",
+	        field_1: "title",
+	        img_0: "img"
+	    },
+
+	    // 🔥 これ追加！！
+	    layout: FamilyTree.layout.tree,
+	    orientation: FamilyTree.orientation.top
+	});
