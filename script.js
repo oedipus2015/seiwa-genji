@@ -117,7 +117,7 @@ function parseCSV(csv) {
     // ==========================
     // テンプレート
     // ==========================
-    FamilyTree.templates.myTemplate = Object.assign({}, FamilyTree.templates.base);
+    FamilyTree.templates.myTemplate = Object.assign({}, FamilyTree.templates.olivia);
 
     FamilyTree.templates.myTemplate.size = [250, 160];
 
