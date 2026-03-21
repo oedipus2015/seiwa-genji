@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // OrgChart 初期化
             var chart = new OrgChart(document.getElementById("tree"), {
-                template: "john",
+                template: "olivia",
                 enableSearch: false,
 
                 nodeBinding: {
