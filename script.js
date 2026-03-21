@@ -47,39 +47,41 @@ document.addEventListener("DOMContentLoaded", () => {
                     pid: pid,
                     name: row.name || "",
                     desc: row.desc || "",
-                    img: row.img || ""   // OrgChart は img_0 にバインドする
+                    img: row.img || ""
                 };
             });
 
-            // OrgChart の描画
-            new OrgChart(document.getElementById("tree"), {
-                template: "olivia",     // ← OrgChart は olivia が最初から使える
+            // ★ OrgChart を変数 chart に入れる
+            var chart = new OrgChart(document.getElementById("tree"), {
+                template: "olivia",
                 enableSearch: false,
 
                 nodeBinding: {
                     field_0: "name",
                     field_1: "desc",
-                    img_0: "img"        // ← OrgChart の画像フィールド
+                    img_0: "img"
                 },
 
                 nodes: nodes
             });
+
+            // ★ chart.on はここで使える
             chart.on('click', function (sender, args) {
-            
+
                 const n = args.node;
-            
+
                 const html = `
                     <div class="popup">
                         <img src="${n.img}" class="popup-img">
                         <h2>${n.name}</h2>
-                        <p>${n.desc}</p>   <!-- desc をそのまま詳細として使う -->
+                        <p>${n.desc}</p>
                         <button onclick="document.querySelector('.popup').remove()">閉じる</button>
                     </div>
                 `;
-            
+
                 const old = document.querySelector('.popup');
                 if (old) old.remove();
-            
+
                 document.body.insertAdjacentHTML('beforeend', html);
             });
 
