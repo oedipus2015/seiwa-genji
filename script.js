@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // ★ OrgChart を変数 chart に入れる
             var chart = new OrgChart(document.getElementById("tree"), {
-                template: "ana",
+                template: "diva",
                 enableSearch: false,
             
                 nodeBinding: {
