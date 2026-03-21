@@ -52,20 +52,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
           name: row.name || "",
           desc: row.desc || "",
-          img: row.img || ""   // ← olivia はこれでOK
+          img: row.img || ""   // ← 画像
         };
       });
 
       nodes.sort((a, b) => a.id - b.id);
 
       new FamilyTree(document.getElementById("tree"), {
-        template: "olivia",   // ← olivia に変更
+        template: "olivia",   // ← ★ これが最重要（縦並びOK）
         orientation: FamilyTree.orientation.top,
 
         nodeBinding: {
           field_0: "name",
           field_1: "desc",
-          img: "img"   // ← olivia は img という名前の画像フィールド
+          img: "img"   // ← olivia は img フィールドを使う
         },
 
         nodes: nodes
