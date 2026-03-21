@@ -43,15 +43,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodes: nodes
             });
             
-            // ★ SVG の幅を強制的に #tree に合わせる
-            chart.on('init', function () {
+            // ★ 家系図を左寄せに強制（最終決定版）
+            chart.on('redraw', function () {
                 const svg = document.querySelector('#tree svg');
                 if (!svg) return;
             
-                svg.style.width = '100%';
-                svg.removeAttribute('width');
-                svg.removeAttribute('height');
                 svg.style.transform = 'none';
+                svg.style.width = '100%';
+            
+                const groups = svg.querySelectorAll('g');
+                groups.forEach(g => g.removeAttribute('transform'));
             });
             
             // ★ 内部イベントを全部消す ← これが原因なので削除
