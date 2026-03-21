@@ -1,15 +1,17 @@
+/* 全体 */
 body {
   margin: 0;
   font-family: sans-serif;
 }
 
-/* 家系図エリア */
+/* 家系図エリア（右パネルの幅を避ける） */
 #tree {
-  width: 100%;
+  width: calc(100% - 320px); /* ← 右パネルの幅を避ける */
   height: 100vh;
+  float: left; /* ← 左側に固定 */
 }
 
-/* 旧ポップアップ（使ってないなら残してもOK） */
+/* 旧ポップアップ（使ってないなら残してOK） */
 .popup {
     position: fixed;
     top: 50%;
@@ -52,12 +54,12 @@ body {
     overflow-y: auto;
     z-index: 9999;
     transition: transform 0.3s ease;
-    transform: translateX(0); /* ← 初期位置は右側に固定 */
+    transform: translateX(0);
 }
 
 /* ★ 隠すときだけ右にスライド */
 .side-panel.hidden {
-    transform: translateX(100%);
+    transform: translateX(100%) !important;
 }
 
 /* 右パネルの画像 */
@@ -80,20 +82,21 @@ body {
     font-size: 18px;
 }
 
-/* ★★★ ここが最重要 ★★★
-   OrgChart のノード画像を壊す CSS を削除したので、
-   ノードが下に落ちる現象は完全に止まる。
-*/
+/* ★★★ Olivia の余計な要素を完全に消す ★★★ */
+
+/* 詳細カード */
 .oc-card {
     display: none !important;
 }
-/* ★ Olivia テンプレートの中央固定ノードを無効化 */
+
+/* 中央固定ノード */
 .oc-node.focused,
 .oc-node.selected,
 .oc-node-root {
     display: none !important;
 }
-/* ★ Olivia が内部で作る複製ノードを完全に無効化 */
+
+/* 複製ノード */
 .oc-node-copy,
 .oc-node.oc-node-copy,
 .oc-node-copy * {
