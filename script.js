@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 id: id,
                 pid: pid,
                 name: row.name || "",
-                title: row.desc || "",   // ← ★ desc を title に入れる
+                title: row.desc || "",   // ← ★ desc を title に入れる（必須）
                 desc: row.desc || "",
                 img: row.img || ""
             };
