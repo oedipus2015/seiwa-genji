@@ -59,4 +59,5 @@ function parseCSV(csv) {
 	        img_0: "img"
 	    },
 
+	    layout: "tree", // ← これだけにする
 	});
