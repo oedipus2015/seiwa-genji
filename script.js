@@ -76,21 +76,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // ★ click を「1つだけ」にまとめる
             chart.on('click', function (sender, args) {
-                // まず展開処理を完全に止める
                 args.cancel = true;
-
+            
+                // ★ Olivia の詳細カードを強制削除
+                document.querySelectorAll(".oc-card").forEach(c => c.remove());
+            
                 const id = args?.node?.id;
                 if (!id) return;
-
+            
                 const n = myData[id];
                 if (!n) return;
-
-                // パネルにデータを入れる
+            
                 document.getElementById("panel-img").src = n.img;
                 document.getElementById("panel-name").textContent = n.name;
                 document.getElementById("panel-title").textContent = n.title;
-
-                // パネルを表示
+            
                 document.getElementById("side-panel").classList.remove("hidden");
             });
 
