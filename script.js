@@ -63,9 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 template: "olivia",
                 enableSearch: false,
             
-                nodeMenu: {
-                    details: false
-                },
+                nodeMenu: false,
             
                 collapse: {
                     level: 1
