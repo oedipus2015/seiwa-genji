@@ -86,19 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("NODE ID:", id);
                 console.log("MY DATA:", n);
             
-                const html = `
-                    <div class="popup">
-                        <img src="${n.img}" class="popup-img">
-                        <h2>${n.name}</h2>
-                        <p>${n.title}</p>
-                        <button onclick="document.querySelector('.popup').remove()">閉じる</button>
-                    </div>
-                `;
-            
-                const old = document.querySelector('.popup');
-                if (old) old.remove();
-            
-                document.body.insertAdjacentHTML('beforeend', html);
             });
 
         });
