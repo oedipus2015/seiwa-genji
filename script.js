@@ -103,3 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 });
+window.hidePanel = function () {
+    document.getElementById("side-panel").classList.add("hidden");
+};
