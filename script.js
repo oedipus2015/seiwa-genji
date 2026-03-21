@@ -1,7 +1,4 @@
-// ★ 既存の click イベントを全部削除（競合を完全に消す）
-document.getElementById("tree").replaceWith(document.getElementById("tree").cloneNode(true));
 // CSV 1行をパースする関数（カンマとダブルクォート対応）
-
 function parseCSVLine(line) {
     const result = [];
     let current = "";
@@ -77,23 +74,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodes: nodes
             });
 
+            // ★ OrgChart が内部で登録した click を全部削除
+            chart.events = {};
+
             // ★ click を「1つだけ」にまとめる
             chart.on('click', function (sender, args) {
+                // ノード展開を完全に止める
                 args.cancel = true;
-            
+
                 // ★ Olivia の詳細カードを強制削除
                 document.querySelectorAll(".oc-card").forEach(c => c.remove());
-            
+
                 const id = args?.node?.id;
                 if (!id) return;
-            
+
                 const n = myData[id];
                 if (!n) return;
-            
+
+                // パネルにデータを入れる
                 document.getElementById("panel-img").src = n.img;
                 document.getElementById("panel-name").textContent = n.name;
                 document.getElementById("panel-title").textContent = n.title;
-            
+
+                // パネルを表示
                 document.getElementById("side-panel").classList.remove("hidden");
             });
 
