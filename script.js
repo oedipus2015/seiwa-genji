@@ -62,20 +62,21 @@ document.addEventListener("DOMContentLoaded", () => {
             var chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
                 enableSearch: false,
-            
                 nodeMenu: false,
-            
                 collapse: {
                     level: 1
                 },
-            
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
                     img_0: "img"
                 },
-            
                 nodes: nodes
+            });
+            
+            // ★ ここに追加する（chart のすぐ後）
+            chart.on('click', function(sender, args){
+                args.cancel = true; // ← 展開処理を完全に止める
             });
 
             // ★ クリックイベント（myData を使う）
