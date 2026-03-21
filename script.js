@@ -69,6 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
             chart.on('click', function (sender, args) {
             
                 console.log("CLICK EVENT:", args);   // ← ★ ここ！
+                console.log("NODE:", args.node);
+                console.log("NODE.DATA:", args.node?.data);
+
+
             
                 if (!args || !args.node || !args.node.data) return;
             
