@@ -68,6 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // ★ chart.on はここで使える
             chart.on('click', function (sender, args) {
             
+                // ★ ノード以外をクリックしたら何もしない
+                if (!args || !args.data) return;
+            
                 const n = args.data;
             
                 const html = `
