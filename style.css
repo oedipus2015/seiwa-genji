@@ -21,3 +21,13 @@
 .hidden {
     display: none;
 }
+
+/* 右パネルの画像サイズを調整 */
+#panel-img {
+    width: 180px;      /* ← 好きなサイズに調整できる */
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px; /* 丸みが欲しければ */
+    object-fit: cover;
+}
