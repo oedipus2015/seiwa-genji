@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("panel-title").textContent = n.title;
 
                 // パネルを表示
-                document.getElementById("side-panel").classList.remove("hidden");
+                //document.getElementById("side-panel").classList.remove("hidden");
             });
 
         });
