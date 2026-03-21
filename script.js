@@ -28,8 +28,7 @@ function clearLog() {
 // ==========================
 function toNum(v) {
     if (!v) return null;
-    const cleaned = v.replace(/[^\d]/g, "");
-    const n = parseInt(cleaned);
+    const n = Number(v);
     return isNaN(n) ? null : n;
 }
 
@@ -87,9 +86,9 @@ function parseCSV(csv) {
         const name = cols[1];
         const desc = cols[2];
         const father = toNum(cols[4]);
-        const img = cols[5];
+        const img = cols[6];
 
-        if (!id) return;
+        log("pid type: " + typeof father + " value:" + father);
 
         let node = {
             id: id,
@@ -99,11 +98,10 @@ function parseCSV(csv) {
         };
 
 		// 父だけで構築
-		if (father) {
-		    node.pid = father;
+		if (father !== null) {
+		    node.pid = Number(father);
 		}
 
-		// 🔥 ここに追加！！
 		log("node: " + JSON.stringify(node));
 
         nodes.push(node);
