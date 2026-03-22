@@ -19,3 +19,18 @@
 #tree .boc-edit-form input[data-binding="img"] {
     display: none !important;
 }
+
+/*descを改行*/
+.oc-field_2,
+.oc-desc {
+  white-space: normal !important;   /* ← 改行OKにする */
+  word-break: break-word !important; /* ← 日本語でも折れる */
+  overflow: visible !important;      /* ← はみ出し防止 */
+  height: auto !important;           /* ← 高さ固定を解除 */
+  line-height: 1.4em;                /* ← 読みやすく */
+}
+
+.oc-card,
+.oc-card-inner {
+  height: auto !important;
+}
