@@ -17,13 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     row[h.trim()] = cols[idx] ? cols[idx].trim() : "";
                 });
 
-                nodes.push({
-                    id: Number(row.id),
-                    pid: row.pid ? Number(row.pid) : null,
-                    name: row.name,
-                    title: row.title,
-                    img: row.img
-                });
+            nodes.push({
+                id: Number(row.id),
+                pid: row.pid ? Number(row.pid) : null,
+                name: row.name,
+                title: row.title,
+                desc: row.desc,   // ← これが必要
+                img: row.img
+            });
             }
 
             /* ★ OrgChart 初期化（標準ポップアップを使う） */
