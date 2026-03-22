@@ -14,7 +14,3 @@
 #tree .boc-edit-form input[data-binding="img"] {
     display: none !important;
 }
-
-#side-panel {
-    display: none !important;
-}
