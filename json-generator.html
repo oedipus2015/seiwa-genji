@@ -2,185 +2,135 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>OrgChart用 JSON 生成ツール</title>
+  <title>OrgChart用 JSON 編集・生成ツール</title>
   <style>
-    body {
-      font-family: system-ui, sans-serif;
-      margin: 20px;
-      line-height: 1.6;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-bottom: 16px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 4px 6px;
-      font-size: 13px;
-    }
-    th {
-      background: #f5f5f5;
-    }
-    input, textarea {
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 12px;
-      font-family: system-ui, sans-serif;
-    }
-    textarea {
-      height: 80px;
-      resize: vertical;
-    }
-    button {
-      padding: 6px 12px;
-      margin: 4px 4px 12px 0;
-      cursor: pointer;
-    }
-    pre {
-      background: #f5f5f5;
-      padding: 10px;
-      white-space: pre-wrap;
-      word-break: break-all;
-      font-size: 12px;
-    }
+    body { font-family: system-ui, sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 16px; }
+    th, td { border: 1px solid #ccc; padding: 4px 6px; font-size: 13px; }
+    th { background: #f5f5f5; }
+    input, textarea { width: 100%; box-sizing: border-box; font-size: 12px; }
+    textarea { height: 80px; resize: vertical; }
+    button { padding: 6px 12px; margin: 4px 4px 12px 0; cursor: pointer; }
+    pre { background: #f5f5f5; padding: 10px; white-space: pre-wrap; font-size: 12px; }
   </style>
 </head>
 <body>
-  <h1>OrgChart用 JSON 生成ツール</h1>
-  <p>行を追加して <code>id / pid / name / title / desc / img</code> を入力すると、OrgChart 用の JSON を生成します。</p>
 
-  <button id="addRowBtn">＋ 行を追加</button>
-  <button id="clearRowsBtn">全行クリア</button>
+<h1>OrgChart用 JSON 編集・生成ツール</h1>
 
-  <table id="dataTable">
-    <thead>
-      <tr>
-        <th style="width:60px;">id</th>
-        <th style="width:60px;">pid</th>
-        <th style="width:140px;">name</th>
-        <th style="width:180px;">title</th>
-        <th>desc</th>
-        <th style="width:180px;">img</th>
-        <th style="width:60px;">削除</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- 行はJSで追加 -->
-    </tbody>
-  </table>
+<button id="loadJsonBtn">既存 JSON を読み込む</button>
+<input type="file" id="jsonFileInput" accept=".json" style="display:none">
 
-  <button id="generateJsonBtn">JSON を生成</button>
+<button id="addRowBtn">＋ 行を追加</button>
+<button id="clearRowsBtn">全行クリア</button>
 
-  <h2>生成された JSON（a.json 用）</h2>
-  <pre id="jsonOutput"></pre>
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th style="width:60px;">id</th>
+      <th style="width:60px;">pid</th>
+      <th style="width:140px;">name</th>
+      <th style="width:180px;">title</th>
+      <th>desc</th>
+      <th style="width:180px;">img</th>
+      <th style="width:60px;">削除</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-  <button id="downloadJsonBtn">a.json としてダウンロード</button>
+<button id="generateJsonBtn">JSON を生成</button>
 
-  <script>
-    const tbody = document.querySelector("#dataTable tbody");
-    const addRowBtn = document.getElementById("addRowBtn");
-    const clearRowsBtn = document.getElementById("clearRowsBtn");
-    const generateJsonBtn = document.getElementById("generateJsonBtn");
-    const jsonOutput = document.getElementById("jsonOutput");
-    const downloadJsonBtn = document.getElementById("downloadJsonBtn");
+<h2>生成された JSON（seiwa-genji.json 用）</h2>
+<pre id="jsonOutput"></pre>
 
-    function createRow(defaults = {}) {
-      const tr = document.createElement("tr");
+<button id="downloadJsonBtn">seiwa-genji.json としてダウンロード</button>
 
-      const fields = ["id", "pid", "name", "title", "desc", "img"];
+<script>
+  const tbody = document.querySelector("#dataTable tbody");
+  const addRowBtn = document.getElementById("addRowBtn");
+  const clearRowsBtn = document.getElementById("clearRowsBtn");
+  const generateJsonBtn = document.getElementById("generateJsonBtn");
+  const jsonOutput = document.getElementById("jsonOutput");
+  const downloadJsonBtn = document.getElementById("downloadJsonBtn");
 
-      fields.forEach(field => {
-        const td = document.createElement("td");
-        let el;
-        if (field === "desc") {
-          el = document.createElement("textarea");
-        } else {
-          el = document.createElement("input");
-          el.type = "text";
-        }
-        el.value = defaults[field] ?? "";
-        el.dataset.field = field;
-        td.appendChild(el);
-        tr.appendChild(td);
+  const loadJsonBtn = document.getElementById("loadJsonBtn");
+  const jsonFileInput = document.getElementById("jsonFileInput");
+
+  function createRow(defaults = {}) {
+    const tr = document.createElement("tr");
+    const fields = ["id", "pid", "name", "title", "desc", "img"];
+
+    fields.forEach(field => {
+      const td = document.createElement("td");
+      let el;
+      if (field === "desc") el = document.createElement("textarea");
+      else { el = document.createElement("input"); el.type = "text"; }
+      el.value = defaults[field] ?? "";
+      el.dataset.field = field;
+      td.appendChild(el);
+      tr.appendChild(td);
+    });
+
+    const tdDel = document.createElement("td");
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "削除";
+    delBtn.onclick = () => tr.remove();
+    tdDel.appendChild(delBtn);
+    tr.appendChild(tdDel);
+
+    tbody.appendChild(tr);
+  }
+
+  addRowBtn.onclick = () => createRow();
+
+  clearRowsBtn.onclick = () => {
+    if (confirm("全ての行を削除しますか？")) tbody.innerHTML = "";
+  };
+
+  generateJsonBtn.onclick = () => {
+    const rows = [...tbody.querySelectorAll("tr")];
+    const result = rows.map(tr => {
+      const obj = {};
+      tr.querySelectorAll("input, textarea").forEach(el => {
+        obj[el.dataset.field] = el.value.trim();
       });
-
-      const tdDel = document.createElement("td");
-      const delBtn = document.createElement("button");
-      delBtn.textContent = "削除";
-      delBtn.addEventListener("click", () => {
-        tr.remove();
-      });
-      tdDel.appendChild(delBtn);
-      tr.appendChild(tdDel);
-
-      tbody.appendChild(tr);
-    }
-
-    addRowBtn.addEventListener("click", () => {
-      createRow();
+      return {
+        id: obj.id ? Number(obj.id) : null,
+        pid: obj.pid ? Number(obj.pid) : null,
+        name: obj.name || "",
+        title: obj.title || "",
+        desc: obj.desc || "",
+        img: obj.img || ""
+      };
     });
+    jsonOutput.textContent = JSON.stringify(result, null, 2);
+  };
 
-    clearRowsBtn.addEventListener("click", () => {
-      if (confirm("全ての行を削除しますか？")) {
-        tbody.innerHTML = "";
-      }
-    });
+  downloadJsonBtn.onclick = () => {
+    const text = jsonOutput.textContent.trim();
+    if (!text) return alert("まず JSON を生成してね。");
+    const blob = new Blob([text], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "seiwa-genji.json";
+    a.click();
+  };
 
-    generateJsonBtn.addEventListener("click", () => {
-      const rows = Array.from(tbody.querySelectorAll("tr"));
-      const result = [];
+  loadJsonBtn.onclick = () => jsonFileInput.click();
 
-      for (const tr of rows) {
-        const obj = {};
-        const inputs = tr.querySelectorAll("input, textarea");
-        inputs.forEach(el => {
-          const field = el.dataset.field;
-          obj[field] = el.value.trim();
-        });
+  jsonFileInput.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const data = JSON.parse(reader.result);
+      tbody.innerHTML = "";
+      data.forEach(item => createRow(item));
+    };
+    reader.readAsText(file);
+  };
+</script>
 
-        const id = obj.id ? Number(obj.id) : null;
-        const pid = obj.pid ? Number(obj.pid) : null;
-
-        result.push({
-          id: id,
-          pid: pid,
-          name: obj.name || "",
-          title: obj.title || "",
-          desc: obj.desc || "",
-          img: obj.img || ""
-        });
-      }
-
-      jsonOutput.textContent = JSON.stringify(result, null, 2);
-    });
-
-    downloadJsonBtn.addEventListener("click", () => {
-      const text = jsonOutput.textContent.trim();
-      if (!text) {
-        alert("まず JSON を生成してね。");
-        return;
-      }
-      const blob = new Blob([text], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "seiwa-genji.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    });
-
-    // サンプル1行だけ自動追加
-    createRow({
-      id: "1",
-      pid: "",
-      name: "清和天皇",
-      title: "56代天皇",
-      desc: "武門の棟梁となる清和源氏の祖",
-      img: "img/Emperor_Seiwa.jpg"
-    });
-  </script>
 </body>
 </html>
