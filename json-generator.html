@@ -84,30 +84,37 @@
     return result.join("\n"); // 文ごとに段落
   }
 
-  function createRow(defaults = {}) {
-    const tr = document.createElement("tr");
-    const fields = ["id", "pid", "name", "title", "desc", "img"];
+function createRow(defaults = {}) {
+  const tr = document.createElement("tr");
+  const fields = ["id", "pid", "name", "title", "desc", "img"];
 
-    fields.forEach(field => {
-      const td = document.createElement("td");
-      let el;
-      if (field === "desc") el = document.createElement("textarea");
-      else { el = document.createElement("input"); el.type = "text"; }
-      el.value = defaults[field] ?? "";
-      el.dataset.field = field;
-      td.appendChild(el);
-      tr.appendChild(td);
-    });
+  fields.forEach(field => {
+    const td = document.createElement("td");
+    let el;
 
-    const tdDel = document.createElement("td");
-    const delBtn = document.createElement("button");
-    delBtn.textContent = "削除";
-    delBtn.onclick = () => tr.remove();
-    tdDel.appendChild(delBtn);
-    tr.appendChild(tdDel);
+    if (field === "desc") {
+      el = document.createElement("textarea");
+      el.maxLength = 22;   // ★ desc は22文字まで！
+    } else {
+      el = document.createElement("input");
+      el.type = "text";
+    }
 
-    tbody.appendChild(tr);
-  }
+    el.value = defaults[field] ?? "";
+    el.dataset.field = field;
+    td.appendChild(el);
+    tr.appendChild(td);
+  });
+
+  const tdDel = document.createElement("td");
+  const delBtn = document.createElement("button");
+  delBtn.textContent = "削除";
+  delBtn.onclick = () => tr.remove();
+  tdDel.appendChild(delBtn);
+  tr.appendChild(tdDel);
+
+  tbody.appendChild(tr);
+}
 
   addRowBtn.onclick = () => createRow();
 
