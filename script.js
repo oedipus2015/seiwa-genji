@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     wiki: "wiki"
                 },
             
+                // ★ ここに入れる！
+                nodeClick: OrgChart.action.edit,
+            
                 editForm: {
                     readOnly: true,
                     photoBinding: "img",
