@@ -19,3 +19,12 @@
 #tree .boc-edit-form input[data-binding="img"] {
     display: none !important;
 }
+
+/*desc改行*/
+.oc-desc {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow: visible !important;
+  height: auto !important;
+  line-height: 1.4em;
+}
