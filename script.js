@@ -6,39 +6,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
-            
+
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
-                    img_0: "img",
-                    wiki: "wiki"
+                    field_2: "desc",
+                    img_0: "img"
                 },
-            
-                editForm: {
-                    readOnly: true,
-                    photoBinding: "img",
-            
-                    buttons: {
-                        wiki: {
-                            icon: OrgChart.icon.link,
-                            text: "Wikipedia",
-                            onClick: function (nodeId) {
-                                const node = chart.get(nodeId);
-                                if (node.wiki) {
-                                    window.open(node.wiki, "_blank");
-                                }
-                            }
-                        }
-                    }
-                },
-            
+
                 nodeClick: (sender, node) => {
                     showPanel(node);
                 }
             });
 
-            // ★ ノード側の desc 表示を完全に削除（foreignObject を消す）
-            delete OrgChart.templates.olivia.field_2;
+            // ★ ノード内の desc を textarea で表示（あなたが使っていた安定版）
+            OrgChart.templates.olivia.field_2 =
+                '<textarea class="oc-desc" ' +
+                'style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;' +
+                'border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
 
             chart.load(nodes);
 
