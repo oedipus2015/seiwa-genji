@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ★ JSON を読み込む
     fetch("seiwa-genji.json")
         .then(res => res.json())
         .then(nodes => {
 
-            // ★ OrgChart 初期化
             const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
 
@@ -22,11 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // ★ desc を textarea に変える魔法のコード（ここが超重要！！）
-            OrgChart.templates.olivia.desc =
-                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;" readonly>{val}</textarea>';
+            // ★ desc を textarea に変える本命コード（field_2 を上書き！！）
+            OrgChart.templates.olivia.field_2 =
+                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
 
-            // ★ データ読み込み
             chart.load(nodes);
 
         })
