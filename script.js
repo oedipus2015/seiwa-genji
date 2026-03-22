@@ -38,9 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }   // ← ★ここはカンマ不要（最後の要素だから）
             });
 
-            // ★ ノード側の desc を textarea に戻す
             OrgChart.templates.olivia.field_2 =
-                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
+                '<foreignObject x="10" y="60" width="200" height="40">' +
+                    '<div xmlns="http://www.w3.org/1999/xhtml" ' +
+                    'style="font-size:14px; white-space:pre-wrap; word-break:break-word; overflow:hidden;">{val}</div>' +
+                '</foreignObject>';
 
             chart.load(nodes);
 
