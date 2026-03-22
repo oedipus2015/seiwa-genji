@@ -9,3 +9,6 @@
 #side-panel {
     display: none;
 }
+.oc-img {
+    display: none !important;
+}
