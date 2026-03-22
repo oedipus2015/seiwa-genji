@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>家系図</title>
 
-    <!-- OrgChart の CSS（存在する） -->
+    <!-- OrgChart の CSS -->
     <link rel="stylesheet" href="https://balkan.app/js/OrgChart.css">
 
     <!-- あなたの CSS -->
@@ -17,12 +17,15 @@
     <!-- ★ 家系図（OrgChart が描画する場所） -->
     <div id="tree"></div>
 
-    <!-- ★ 右パネル（必ず tree の “外側” に置く） -->
+    <!-- ★ 右パネル（俊作の独自UI） -->
     <div id="side-panel" class="side-panel hidden">
         <button class="close-btn" onclick="hidePanel()">×</button>
         <img id="panel-img" class="panel-img" src="">
         <h2 id="panel-name"></h2>
         <p id="panel-title"></p>
+
+        <!-- desc を textarea に変更！！ -->
+        <textarea id="panel-desc" class="panel-desc" readonly></textarea>
     </div>
 
     <!-- OrgChart の JS -->
