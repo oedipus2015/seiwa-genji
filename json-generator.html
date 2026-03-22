@@ -57,6 +57,33 @@
   const loadJsonBtn = document.getElementById("loadJsonBtn");
   const jsonFileInput = document.getElementById("jsonFileInput");
 
+  /* ★★★ 句読点＋22文字ハイブリッド段落分け ★★★ */
+  function autoParagraphHybrid(str, maxLength = 22) {
+    const sentences = str.split(/(?<=。)/); // 「。」で区切る（句点を残す）
+
+    const result = sentences.map(sentence => {
+      sentence = sentence.trim();
+      if (sentence.length === 0) return "";
+
+      let wrapped = "";
+      let count = 0;
+
+      for (let i = 0; i < sentence.length; i++) {
+        wrapped += sentence[i];
+        count++;
+
+        if (count >= maxLength) {
+          wrapped += "\n";  // 文中の折り返し
+          count = 0;
+        }
+      }
+
+      return wrapped;
+    });
+
+    return result.join("\n"); // 文ごとに段落
+  }
+
   function createRow(defaults = {}) {
     const tr = document.createElement("tr");
     const fields = ["id", "pid", "name", "title", "desc", "img"];
@@ -70,16 +97,6 @@
       el.dataset.field = field;
       td.appendChild(el);
       tr.appendChild(td);
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("seiwa-genji.json")
-        .then(res => res.json())
-        .then(data => {
-          tbody.innerHTML = "";
-          data.forEach(item => createRow(item));
-        })
-        .catch(err => console.error("JSON 読み込みエラー:", err));
     });
 
     const tdDel = document.createElement("td");
@@ -110,7 +127,7 @@
         pid: obj.pid ? Number(obj.pid) : null,
         name: obj.name || "",
         title: obj.title || "",
-        desc: obj.desc || "",
+        desc: autoParagraphHybrid(obj.desc || "", 22),  // ← ★ここでハイブリッド適用！
         img: obj.img || ""
       };
     });
