@@ -24,12 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // ★ ノード全体の高さを増やす
-            OrgChart.templates.olivia.size = [220, 140];
-            
-            // ★ desc を div にして改行＋高さ固定
             OrgChart.templates.olivia.field_2 =
-                '<div class="oc-desc" style="white-space:pre-wrap;word-break:break-word;height:60px;overflow:auto;">{val}</div>';
+                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
             
             chart.load(nodes);
 
