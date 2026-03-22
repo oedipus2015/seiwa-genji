@@ -33,20 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
-                    field_2: "desc"
+                    field_2: "desc",
+                    img_0: "img"   // ← これを戻すと画像が出る
                 },
-                editForm: false,   // ← これで右側のURLが完全に消える！
-                popup: {
-                    template: function(node) {
-                        return `
-                            <div class="popup">
-                                <img src="${node.img}" style="width:80px;height:80px;object-fit:cover;">
-                                <h2>${node.name}</h2>
-                                <h3>${node.title}</h3>
-                                <p>${node.desc}</p>
-                            </div>
-                        `;
-                    }
+                editForm: {
+                    readOnly: true,   // ← 編集フォームは出るけど入力不可
+                    photoBinding: "img"  // ← 画像をちゃんと表示させる
                 },
                 nodes: nodes
             });
