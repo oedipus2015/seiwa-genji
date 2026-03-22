@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 },
             
-                nodeClick: (node) => {
+                nodeClick: (sender, node) => {
                     showPanel(node);
                 }
             });
