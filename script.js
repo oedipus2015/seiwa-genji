@@ -24,9 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // ★ ノード側の desc を textarea に変える
             OrgChart.templates.olivia.field_2 =
-                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
+                '<div class="oc-desc" style="white-space:pre-wrap;word-break:break-word;">{val}</div>';
             
             // ★ ここでテンプレートの中身を確認
             console.log("olivia template:", OrgChart.templates.olivia);
