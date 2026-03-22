@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // ★ ノード側の desc を div に変える
+            // ★ ノード側の desc を div にして、高さ固定＋改行表示
             OrgChart.templates.olivia.field_2 =
-                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
+                '<div class="oc-desc" style="width:100%;height:60px;white-space:pre-wrap;word-break:break-word;overflow:auto;border:none;background:transparent;">{val}</div>';
             
             chart.load(nodes);
 
