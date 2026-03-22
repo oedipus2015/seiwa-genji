@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // ★ field_2 を完全に削除（これが重要）
+            // ★ ノード側の desc 表示を完全に削除（foreignObject を消す）
             delete OrgChart.templates.olivia.field_2;
 
             chart.load(nodes);
