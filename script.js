@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // ★ JSON を読み込む
-    fetch("a.json")
+    fetch("seiwa-genji.json")
         .then(res => res.json())
         .then(nodes => {
 
