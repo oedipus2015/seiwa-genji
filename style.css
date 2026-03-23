@@ -40,4 +40,5 @@ h1 {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid steelblue;
+  pointer-events: none;
 }
