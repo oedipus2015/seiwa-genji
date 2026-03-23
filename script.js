@@ -23,11 +23,6 @@ fetch("seiwa-genji.json")
     root.x0 = 0;
     root.y0 = 0;
 
-    // 初期状態で子を折りたたむ
-    if (root.children) {
-      root.children.forEach(collapse);
-    }
-
     const svg = d3.select("#tree").append("svg")
       .attr("width", width)
       .attr("height", 800)
