@@ -51,11 +51,12 @@ function buildHierarchy(list) {
   // 親子関係を構築
   list.forEach(item => {
     const node = map.get(item.id);
-    if (item.pid == null || item.pid === 0) {
-      // 親がいない → ルート
+
+    // ★ ここを強化：null, "null", 0, "0", undefined を root とみなす
+    if (item.pid === null || item.pid === "null" || item.pid === 0 || item.pid === "0" || item.pid === undefined) {
       root = node;
     } else {
-      const parent = map.get(item.pid);
+      const parent = map.get(Number(item.pid));
       if (parent) {
         parent.children.push(node);
       }
