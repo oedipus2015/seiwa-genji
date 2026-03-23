@@ -90,20 +90,20 @@ function update(source, svg) {
       update(d, svg);
     });
 
-  // ★ 画像ノード（5倍サイズ：200×200）
-  nodeEnter.append("image")
-    .attr("class", "node-image")
-    .attr("href", d => d.data.img || "img/dummy.png")
-    .attr("x", -100)   // 中心に合わせる
-    .attr("y", -100)
-    .attr("width", 200)
-    .attr("height", 200);
-
-  // ★ 名前（画像の右側に配置）
+  // ★ 名前（先に描く）
   nodeEnter.append("text")
     .attr("dy", "0.31em")
     .attr("x", 120)
     .text(d => d.data.name);
+  
+  // ★ 画像（後に描く＝前面に来る）
+  nodeEnter.append("image")
+    .attr("class", "node-image")
+    .attr("href", d => d.data.img || "img/dummy.png")
+    .attr("x", -100)
+    .attr("y", -100)
+    .attr("width", 200)
+    .attr("height", 200);
 
   let nodeUpdate = nodeEnter.merge(node);
 
