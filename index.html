@@ -8,23 +8,23 @@
   <script src="familytree.js"></script>
 
   <!-- カスタムテンプレート定義 -->
-  <script>
-    FamilyTree.templates.custom = Object.assign({}, FamilyTree.templates.base);
-  
-    FamilyTree.templates.custom.size = [220, 140];
-  
-    FamilyTree.templates.custom.node =
-      '<rect x="0" y="0" width="200" height="80" fill="#fff" stroke="#000"></rect>';
-  
-    FamilyTree.templates.custom.field_0 =
-      '<text x="10" y="45" font-size="16">{val}</text>';
-  
-    /* ← これが無いと縦にならない */
-    FamilyTree.templates.custom.link =
-      '<path stroke="#000" stroke-width="1" fill="none" d="{val}"/>';
-  
-    FamilyTree.templates.custom.min = [40, 40];
-  </script>
+<script>
+  FamilyTree.templates.custom = Object.assign({}, FamilyTree.templates.base);
+
+  /* ← rect と完全一致させる */
+  FamilyTree.templates.custom.size = [220, 140];
+
+  FamilyTree.templates.custom.node =
+    '<rect x="0" y="0" width="220" height="140" fill="#fff" stroke="#000"></rect>';
+
+  FamilyTree.templates.custom.field_0 =
+    '<text x="10" y="75" font-size="20">{val}</text>';
+
+  FamilyTree.templates.custom.link =
+    '<path stroke="#000" stroke-width="1" fill="none" d="{val}"/>';
+
+  FamilyTree.templates.custom.min = [40, 40];
+</script>
 
   <style>
     body {
