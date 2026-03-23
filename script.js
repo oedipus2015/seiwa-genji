@@ -112,7 +112,7 @@ function update(source, svg) {
 
   nodeUpdate.transition()
     .duration(300)
-    .attr("transform", d => `translate(${d.y},${d.x})`);
+    .attr("transform", d => `translate(${d.x},${d.y})`);
 
   let link = svg.selectAll("path.link")
     .data(links, d => d.target.id);
