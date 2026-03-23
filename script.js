@@ -27,6 +27,10 @@ function drawTree(data) {
   const treeLayout = d3.tree().nodeSize([120, 80]);
   treeLayout(root);
 
+  const g = svg.append("g")
+    .attr("transform", `translate(${width / 2}, 50)`);
+
+
   // 線
   svg.selectAll("line")
     .data(root.links())
