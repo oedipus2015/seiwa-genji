@@ -3,6 +3,8 @@
     "id": 1,
     "name": "清和天皇",
     "title": "第56代天皇",
+    "birthYear": 850,
+    "deathYear": 881,
     "wiki": "https://ja.wikipedia.org/wiki/清和天皇",
     "img": "img/Emperor_Seiwa.jpg"
   },
@@ -11,6 +13,8 @@
     "pid": 1,
     "name": "源経基",
     "title": "清和源氏の祖",
+    "birthYear": 912,
+    "deathYear": 997,
     "wiki": "https://ja.wikipedia.org/wiki/源経基",
     "img": "img/dummy.png"
   },
@@ -19,6 +23,8 @@
     "pid": 2,
     "name": "源満仲",
     "title": "摂津源氏の祖",
+    "birthYear": 972,
+    "deathYear": 1009,
     "wiki": "https://ja.wikipedia.org/wiki/源満仲",
     "img": "img/dummy.png"
   }
