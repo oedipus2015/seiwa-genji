@@ -100,10 +100,10 @@ function update(source, svg) {
   nodeEnter.append("image")
     .attr("class", "node-image")
     .attr("href", d => d.data.img || "img/dummy.png")
-    .attr("x", -100)
-    .attr("y", -100)
-    .attr("width", 200)
-    .attr("height", 200);
+    .attr("x", -40)
+    .attr("y", -40)
+    .attr("width", 80)
+    .attr("height", 80);
 
   let nodeUpdate = nodeEnter.merge(node);
 
