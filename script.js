@@ -104,7 +104,7 @@ function update(source, svg) {
     .attr("r", 6);
 
   nodeEnter.append("text")
-    .attr("dy": "0.31em")
+    .attr("dy", "0.31em")
     .attr("x", 10)
     .text(d => d.data.name);
 
