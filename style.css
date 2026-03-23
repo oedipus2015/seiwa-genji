@@ -36,9 +36,10 @@ h1 {
 }
 
 .item img {
-  width: 200px;        /* ← 固定幅 */
-  height: 200px;       /* ← 固定高さ */
-  object-fit: cover;   /* ← トリミングして綺麗に収める */
+  width: 100%;        /* 親要素の幅に合わせる */
+  max-width: 200px;   /* 200pxより大きくならない */
+  height: auto;       /* 縦横比を維持 */
+  object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
 }
