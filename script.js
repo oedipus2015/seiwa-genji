@@ -78,7 +78,7 @@ function update(source, svg) {
   // ノードの enter
   let nodeEnter = node.enter().append("g")
     .attr("class", "node")
-    .attr("transform", d => `translate(${source.y0},${source.x0})`)
+    .attr("transform", d => `translate(${source.x0},${source.y0})`)
     .on("click", (event, d) => {
       if (d.children) {
         d._children = d.children;
