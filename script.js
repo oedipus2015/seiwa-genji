@@ -2,6 +2,7 @@
 fetch("seiwa-genji.json")
   .then(res => res.json())
   .then(data => {
+    data.sort((a, b) => a.birthYear - b.birthYear);
     const container = document.getElementById("cards");
 
     data.forEach(person => {
