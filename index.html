@@ -4,18 +4,29 @@
   <meta charset="UTF-8">
   <title>家系図（Wikipediaリンク付き）</title>
 
-  <!-- ファイル名に合わせる：familytree.js -->
+  <!-- あなたの familytree.js（テンプレート無し版） -->
   <script src="familytree.js"></script>
 
+  <!-- 私が作った Olivia テンプレート -->
+  <script src="familytree.olivia.js"></script>
+
   <style>
-    body { margin: 0; }
-    #tree { width: 100%; height: 100vh; }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    #tree {
+      width: 100%;
+      height: 100vh;
+    }
   </style>
 </head>
 <body>
 
 <div id="tree"></div>
 
+<!-- 分離した script.js を読み込む -->
 <script src="script.js"></script>
+
 </body>
 </html>
