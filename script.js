@@ -16,12 +16,14 @@ let root;
 fetch("seiwa-genji.json")
   .then(res => res.json())
   .then(data => {
-    // フラットな id / pid 形式 → 階層構造に変換
     const treeData = buildHierarchy(data);
 
     root = d3.hierarchy(treeData);
     root.x0 = 0;
     root.y0 = 0;
+
+    // ★ 最初から全部展開するので collapse は使わない
+    // if (root.children) root.children.forEach(collapse);
 
     const svg = d3.select("#tree").append("svg")
       .attr("width", width)
@@ -29,7 +31,6 @@ fetch("seiwa-genji.json")
       .append("g")
       .attr("transform", "translate(40,40)");
 
-    // update 関数内で svg を使いたいのでクロージャに渡す
     update(root, svg);
   });
 
@@ -38,30 +39,25 @@ function buildHierarchy(list) {
   const map = new Map();
   let root = null;
 
-  // まず全ノードを map に登録
   list.forEach(item => {
     map.set(item.id, { ...item, children: [] });
   });
 
-  // 親子関係を構築
   list.forEach(item => {
     const node = map.get(item.id);
 
-    // ★ ここを強化：null, "null", 0, "0", undefined を root とみなす
     if (item.pid === null || item.pid === "null" || item.pid === 0 || item.pid === "0" || item.pid === undefined) {
       root = node;
     } else {
       const parent = map.get(Number(item.pid));
-      if (parent) {
-        parent.children.push(node);
-      }
+      if (parent) parent.children.push(node);
     }
   });
 
   return root;
 }
 
-// 子を折りたたむ
+// 子を折りたたむ（今回は使わない）
 function collapse(d) {
   if (d.children) {
     d._children = d.children;
@@ -82,9 +78,8 @@ function update(source, svg) {
   // ノードの enter
   let nodeEnter = node.enter().append("g")
     .attr("class", "node")
-    .attr("transform", d => `translate(${source.y0},${source.x0})`)
+    .attr("transform", d => `translate(${source.x0},${source.y0})`)
     .on("click", (event, d) => {
-      // クリックで開閉
       if (d.children) {
         d._children = d.children;
         d.children = null;
@@ -95,21 +90,24 @@ function update(source, svg) {
       update(d, svg);
     });
 
+  // ★ 画像ノード（5倍サイズ：200×200）
   nodeEnter.append("image")
     .attr("class", "node-image")
     .attr("href", d => d.data.img || "img/dummy.png")
-    .attr("x", -20)
-    .attr("y", -20)
-    .attr("width", 40)
-    .attr("height", 40);
+    .attr("x", -100)   // 中心に合わせる
+    .attr("y", -100)
+    .attr("width", 200)
+    .attr("height", 200);
 
+  // ★ 名前（画像の右側に配置）
   nodeEnter.append("text")
     .attr("dy", "0.31em")
-    .attr("x", 10)
+    .attr("x", 120)
     .text(d => d.data.name);
 
   let nodeUpdate = nodeEnter.merge(node);
 
+  // ★ 縦ツリー用 transform
   nodeUpdate.transition()
     .duration(300)
     .attr("transform", d => `translate(${d.x},${d.y})`);
