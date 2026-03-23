@@ -5,7 +5,7 @@ FamilyTree.templates.olivia = Object.assign({}, FamilyTree.templates.base);
 // ノードサイズ
 FamilyTree.templates.olivia.size = [220, 120];
 
-// 画像
+// 画像（確実に動く安定版）
 FamilyTree.templates.olivia.img_0 =
     '<clipPath id="olivia_img_0"><circle cx="60" cy="60" r="40"></circle></clipPath>' +
     '<image preserveAspectRatio="xMidYMid slice" clip-path="url(#olivia_img_0)" x="20" y="20" width="80" height="80" xlink:href="{val}"></image>';
@@ -25,7 +25,7 @@ FamilyTree.templates.olivia.node =
     FamilyTree.templates.olivia.field_0 +
     FamilyTree.templates.olivia.field_1;
 
-// Wikipedia ボタン（後で script.js で使う）
+// Wikipedia ボタン
 FamilyTree.templates.olivia.defs =
     '<g id="olivia_wiki_btn">' +
     '  <circle cx="200" cy="20" r="12" fill="#1a73e8"></circle>' +
