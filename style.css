@@ -36,10 +36,9 @@ h1 {
 }
 
 .item img {
-  width: 100%;
-  max-width: 200px;   /* ← 追加：画像の最大幅 */
-  max-height: 200px;  /* ← 追加：画像の最大高さ */
-  object-fit: cover;
+  width: 200px;        /* ← 固定幅 */
+  height: 200px;       /* ← 固定高さ */
+  object-fit: cover;   /* ← トリミングして綺麗に収める */
   border-radius: 10px;
   margin-bottom: 10px;
 }
